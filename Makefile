@@ -1,7 +1,7 @@
 all: build
 
 build:
-	@echo No build required
+	$(MAKE) -C src build
 
 install:
-	install -D -m 755 --target-directory=${DESTDIR}/usr/bin clr-check-perl-modules
+	$(MAKE) -C src install
