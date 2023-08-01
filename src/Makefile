@@ -3,7 +3,7 @@ all: build
 build: clr-check-perl-modules clr-check-perl-modules-motd
 
 install: clr-check-perl-modules clr-check-perl-modules-motd
-	install -D -m 755 --target-directory=${DESTDIR}/usr/bin $<
+	install -D -m 755 --target-directory=${DESTDIR}/usr/bin $^
 
 clr-check-perl-modules: clr-check-perl-modules.pl
 	cp $< $@
