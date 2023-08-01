@@ -4,10 +4,17 @@ use warnings;
 
 use Config;
 
+# Check for quiet operation
+my $QUIET;
+if (grep {/^-q$/} @ARGV) {
+	$QUIET++;
+}
+
 # Get the current Perl version string
 my $version = $Config{version};
 
-print "Perl version $version -- checking for outdated module paths\n";
+print "Perl version $version -- checking for outdated module paths\n"
+unless $QUIET;
 
 # Get the list of currently-supported version-specific dirs
 my @current_version_dirs = grep { m#/\Q${version}\E(?:/|$)# } @INC;
@@ -84,5 +91,6 @@ if (%results) {
 
 }
 else {
-	print "No obsolete module paths found\n";
+	print "No obsolete module paths found\n"
+	unless $QUIET;
 }
