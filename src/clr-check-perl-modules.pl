@@ -43,7 +43,10 @@ foreach my $dir (@current_version_dirs) {
 my %results;
 # Scan longest stems first
 my @basedirs = sort { length($b) <=> length($a) } keys %patterns;
+BASEDIR:
 foreach my $basedir (@basedirs) {
+	# Skip ahead if this directory doesn't exist
+	next BASEDIR unless -d $basedir;
 	foreach my $pattern (sort { length($b) <=> length($a) }
 		keys %{$patterns{$basedir}}) {
 		open(my $fh, "-|", "find ${basedir} -type d")
